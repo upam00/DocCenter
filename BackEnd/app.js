@@ -1,8 +1,9 @@
 const express = require('express');
-
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(cors())
 
 var mongoose = require('mongoose');
 var dev_db_url = 'mongodb+srv://nodeuser:u1234pam@alumni.jlyng.mongodb.net/doctorDB?retryWrites=true&w=majority';
@@ -36,7 +37,7 @@ app.get('/', async function(req, res){
 
   const doctors = await Doctor.find({...findObj});
     
-  res.send(doctors);
+  res.send({doctors: doctors});
 
 });
 
